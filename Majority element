@@ -1,0 +1,25 @@
+class Solution {
+    public int majorityElement(int[] nums) {
+        ArrayList<Integer>a=new ArrayList<>();
+        Set<Integer>s=new HashSet<Integer>();
+        int res=0;
+        for(int i:nums)
+        {
+            a.add(i);
+            s.add(i);
+        }
+        Collections.sort(a);
+        for(int i:s)
+        {
+            int last=a.lastIndexOf(i);
+            int first=a.indexOf(i);
+            if((last-first+1)>nums.length/2)
+            {
+                res=i;
+                break;
+            }
+        }
+        return res;
+        
+    }
+}
