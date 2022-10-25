@@ -1,0 +1,44 @@
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        vector<vector<int>>v1;
+        
+        int n=nums.size();
+        int sum=0;
+        //vector<vector<int>>::iterator ip;
+        for(int i=0;i<n-2;i++)
+        {
+            sum=nums[i];
+            vector<int>v;
+            unordered_set<int>s;
+            
+            for(int j=i+1;j<n;j++)
+            {
+                int diff=0-(sum+nums[j]);
+                if(s.find(diff)!=s.end())
+                {
+                    v.push_back(nums[i]);
+                    v.push_back(nums[j]);
+                    v.push_back(diff);
+                    sort(v.begin(),v.end());
+                    if(count(v1.begin(),v1.end(),v)>0)
+                    {
+                        
+                    }
+                    else{
+                    v1.push_back(v);
+                    }
+                    v.clear();
+                    
+                }
+                else
+                    s.insert(nums[j]);
+            }
+            sum=0;
+        }
+        //ip=std::unique(v1.begin(),v1.end());
+        //v1.resize(std::distance(v1.begin(),ip));
+        return v1;
+        
+    }
+};
