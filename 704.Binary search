@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+        sort(nums.begin(),nums.end());
+        int index;
+        if(binary_search(nums.begin(),nums.end(),target))
+        {
+            vector<int>::iterator it;
+            it=find(nums.begin(),nums.end(),target);
+            index=it-nums.begin();
+        }
+        else
+        index=-1;
+        return index;
+        
+    }
+};
