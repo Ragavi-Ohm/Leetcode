@@ -1,0 +1,29 @@
+class Solution {
+public:
+    void count(vector<int>& candidates,vector<int>&ds,vector<vector<int>>&res, int target,int i,int n)
+    {
+        if(i==n)
+        {
+            if(target==0)
+            {
+                res.push_back(ds);
+            }
+            return;
+        }
+        if(candidates[i]<=target)
+        {
+            ds.push_back(candidates[i]);
+            count(candidates,ds,res,target-candidates[i],i,n);
+            ds.pop_back();
+        }
+        count(candidates,ds,res,target,i+1,n);
+    }
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<int>ds;
+        int n=candidates.size();
+        vector<vector<int>>res;
+        count(candidates,ds,res,target,0,n);
+        return res;
+        
+    }
+};
