@@ -1,0 +1,37 @@
+int longestConsecutive(vector<int>& nums) {
+        int n=nums.size();
+        if(n==0)
+        return 0;
+        if(n==1)
+        return 1;
+        vector<int>dp(n,0);
+        sort(nums.begin(),nums.end());
+        nums.erase(unique(nums.begin(),nums.end()),nums.end());
+        int flag=0,new1=0;
+        if(nums[1]-nums[0]==1) dp[0]=1;
+        else dp[0]=0;
+        for(int i=1;i<n;i++)
+        {
+            if(nums[i]-nums[i-1]==1)
+            {
+                if(flag==1)
+                {
+                    new1++;
+                    dp[i]=max(new1,dp[i-1]);
+                }
+                else
+                {
+                    dp[i]=dp[i-1]+1;
+                }
+            }
+            else
+            {
+                if(flag==1)
+                new1=0;
+                new1++;
+                flag=1;
+                dp[i]=max(new1,dp[i-1]);
+            }
+        }
+        return dp[n-1];
+    }
